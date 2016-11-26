@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
 
     handle_unsorted
 
-    @exts = @cat.extensions.sort_by(&:name)
+    @exts = @cat.extensions.order(:name)
     @files_by_ext = files_by_ext
     @n_files_in_cat = @files_by_ext.values.map(&:count).reduce(&:+)
   end

@@ -13,9 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def visible_files(file_list)
-    file_list.select do |f|
-      f.public || f.user.id == @current_user.id
-    end
+    file_list.where(public: true).or(file_list.where(user: @current_user))
   end
 
   def update_and_touch(obj, params)

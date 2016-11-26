@@ -24,7 +24,7 @@ class StatsController < ApplicationController
 
   def size_by_category
     Category.all.map do |cat|
-      size = cat.extensions.flat_map(&:user_files).map(&:size).reduce(&:+) || 0
+      size = UserFile.where(extension: cat.extensions).sum(:size) || 0
       { Category: cat.name, Size: size }
     end
   end
