@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def admin_auth
-    redirect_to root_path unless logged_in? && @current_user.admin
+    redirect_to root_path unless logged_in? && current_user.admin
   end
 
   def user_auth
@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def visible_files(file_list)
-    file_list.where(public: true).or(file_list.where(user: @current_user))
+    return file_list if current_user.admin
+    file_list.where(public: true).or(file_list.where(user: current_user))
   end
 
   def update_and_touch(obj, params)

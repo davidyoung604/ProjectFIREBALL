@@ -10,7 +10,7 @@
         <%= render 'layouts/category_dropdown' %>
         <li class="navbar-text">|</li>
 
-        <% if @current_user.admin %>
+        <% if current_user.admin %>
           <%= render 'layouts/settings_dropdown' %>
           <li class="navbar-text">|</li>
         <% end %>

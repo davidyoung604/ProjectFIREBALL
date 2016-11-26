@@ -11,15 +11,19 @@ class SearchesController < ApplicationController
     return if clean_params.empty? || clean_params[:query].empty?
 
     # split on space but keep "quoted strings" as a single entry
-    query_tokens = CSV.parse_line(clean_params[:query], col_sep: ' ')
-
-    ALL_SEARCHABLE.each do |model|
-      cls = Module.const_get(model.to_s.camelize)
-      @results[model.to_s] = query_records(cls, query_tokens)
-    end
+    run_queries CSV.parse_line(clean_params[:query], col_sep: ' ')
   end
 
   private
+
+  def run_queries(query_tokens)
+    ALL_SEARCHABLE.each do |model|
+      cls = Module.const_get(model.to_s.camelize)
+      records = query_records(cls, query_tokens)
+      records = visible_files(records) if model == :user_file
+      @results[model.to_s] = records
+    end
+  end
 
   def query_records(cls, query_tokens)
     # id: nil is a hack, but it lets me start the chainable AR magic with

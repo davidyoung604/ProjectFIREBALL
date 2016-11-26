@@ -8,7 +8,7 @@ class UserFilesController < ApplicationController
     @my_files = results[:my_files]
     @my_public_files = results[:my_public_files]
     @public_files = results[:public_files]
-    @remaining_files = @current_user.admin ? results[:remaining_files] : []
+    @remaining_files = current_user.admin ? results[:remaining_files] : []
   end
 
   def show
@@ -45,8 +45,8 @@ class UserFilesController < ApplicationController
   end
 
   def files_table
-    mine = UserFile.where(user: @current_user)
-    others = UserFile.where.not(user: @current_user)
+    mine = UserFile.where(user: current_user)
+    others = UserFile.where.not(user: current_user)
     {
       my_files: mine.where(public: false),
       my_public_files: mine.where(public: true),
