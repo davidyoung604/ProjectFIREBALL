@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
+  include CategoriesHelper
   before_action :user_auth
   before_action :admin_auth, only: [:edit, :destroy] # add new and create?
+  after_action :collect_unsorted_extensions, only: [:create, :destroy, :update]
 
   def index
     @cats = Category.all
@@ -16,17 +18,21 @@ class CategoriesController < ApplicationController
 
   def show
     @cat = Category.find(params[:id])
-
-    handle_unsorted
-
     @exts = @cat.extensions.order(:name)
     @files_by_ext = files_by_ext
-    @n_files_in_cat = @files_by_ext.values.map(&:count).reduce(&:+)
+    @n_files_in_cat = @files_by_ext.values.map(&:count).reduce(&:+) || 0
   end
 
   def destroy
-    Category.find(params[:id]).destroy
-    redirect_to categories_path
+    cat = Category.find(params[:id])
+    # TODO: need a better way of identifying this special category
+    if cat.name == 'Unsorted'
+      flash[:info] = 'This is the collector category and should not be deleted.'
+      redirect_to cat
+    else
+      cat.destroy
+      redirect_to categories_path
+    end
   end
 
   def create
@@ -57,12 +63,5 @@ class CategoriesController < ApplicationController
     cat_files = {}
     @exts.each { |ext| cat_files[ext.name] = visible_files(ext.user_files) }
     cat_files
-  end
-
-  # special case for extensions not yet sorted
-  def handle_unsorted
-    return if @cat.name != 'Unsorted' # see db/seeds.rb
-    @cat.extensions << Extension.where(category_id: nil)
-    @cat.save
   end
 end

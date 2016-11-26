@@ -47,6 +47,13 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_redirected_to categories_path
   end
 
+  test 'should get destroy unsorted fails' do
+    log_in(@admin)
+    unsorted = categories(:unsorted)
+    get :destroy, params: { id: unsorted.id }
+    assert_redirected_to unsorted
+  end
+
   test 'should get new' do
     log_in(@user)
     get :new

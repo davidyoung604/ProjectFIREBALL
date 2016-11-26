@@ -3,6 +3,10 @@ AllCops:
     - bin/*
     - db/schema.rb
 
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+
 Metrics/MethodLength:
   CountComments: false
   Max: 20
