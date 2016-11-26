@@ -20,3 +20,6 @@
 
 # Ignore SimpleCov output
 /coverage
+
+# Ignore precompiled assets
+/public/assets
