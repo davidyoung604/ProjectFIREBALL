@@ -1,0 +1,19 @@
+<div id="data_usage_n_days">
+  <h4>Days Usage Last 10 Days</h4>
+  <script type="text/javascript">
+    var svg_time = dimple.newSvg('#data_usage_n_days', 700, 400);
+    d3.json('/stats/data_usage_10_days', function (data) {
+      var chart = new dimple.chart(svg_time, data);
+      chart.setBounds(80, 20, 580, 330);
+
+      var x = chart.addTimeAxis('x', 'Date', '%Y-%m-%d', '%Y-%m-%d');
+      x.addOrderRule('Date');
+
+      // https://github.com/d3/d3-format/blob/master/README.md#locale_format
+      chart.addMeasureAxis('y', 'Size').tickFormat = ',.4s';
+      chart.addSeries(null, dimple.plot.area);
+
+      chart.draw();
+    });
+  </script>
+</div>

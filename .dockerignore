@@ -7,3 +7,4 @@ db/*.sqlite3-journal
 log
 test
 tmp
+.byebug_history

@@ -23,3 +23,6 @@
 
 # Ignore precompiled assets
 /public/assets
+
+# Ignore byebug history
+.byebug_history

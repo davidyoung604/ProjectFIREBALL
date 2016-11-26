@@ -41,6 +41,12 @@ class StatsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'get data usage n days' do
+    log_in(@user)
+    get :show, params: { id: 'data_usage_10_days' }
+    assert_response :success
+  end
+
   test 'get top n tags' do
     log_in(@user)
     file = user_files(:jpg_200)
