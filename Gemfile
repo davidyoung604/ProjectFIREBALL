@@ -42,6 +42,10 @@ group :development, :test do
   gem 'rails-controller-testing'
 end
 
+group :test do
+  gem 'codeclimate-test-reporter', '~> 1.0.0'
+end
+
 group :development do
   # Call 'byebug' anywhere in the code to get a debugger console
   gem 'byebug'
