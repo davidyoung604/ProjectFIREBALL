@@ -3,3 +3,5 @@ rvm:
   - 2.2.2 # lowest version supported by activesupport 5.0.0.1
   - 2.3.3
 bundler_args: --without production
+before_script:
+  - rails db:migrate
