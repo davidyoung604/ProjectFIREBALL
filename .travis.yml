@@ -1,7 +1,14 @@
 language: ruby
+
 rvm:
   - 2.2.2 # lowest version supported by activesupport 5.0.0.1
   - 2.3.3
+
 bundler_args: --without production
+
 before_script:
   - rails db:setup
+
+addons:
+  code_climate:
+    repo_token: 471f30d9be7d3ebc72036ab55c2197f294f14cffb3598755c5a6084c2fee27e1
