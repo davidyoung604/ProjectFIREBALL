@@ -54,30 +54,46 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_redirected_to unsorted
   end
 
-  test 'should get new' do
+  test 'should get new redirects regular user' do
     log_in(@user)
+    get :new
+    assert_redirected_to root_path
+  end
+
+  test 'new should succeed admin' do
+    log_in(@admin)
     get :new
     assert_response :success
   end
 
-  test 'create invalid should fail' do
+  test 'create should redirect regular user' do
     log_in(@user)
     assert_equal Category.where(name: 'Documents').count, 0
     post :create, params: {
-      category: { name: '', csv_tags: 'txt, md, doc' }
+      category: { name: 'Documents', csv_tags: 'txt, md, doc' }
     }
-    assert_response :success
+    assert_redirected_to root_path
     assert_equal Category.where(name: 'Documents').count, 0
   end
 
-  test 'create should succeed' do
-    log_in(@user)
+  test 'create should succeed admin' do
+    log_in(@admin)
     assert_equal Category.where(name: 'Documents').count, 0
     post :create, params: {
       category: { name: 'Documents', csv_tags: 'txt, md, doc' }
     }
     assert_redirected_to categories_path
     assert_equal Category.where(name: 'Documents').count, 1
+  end
+
+  test 'create invalid should fail' do
+    log_in(@admin)
+    assert_equal Category.where(name: 'Documents').count, 0
+    post :create, params: {
+      category: { name: '', csv_tags: 'txt, md, doc' }
+    }
+    assert_response :success
+    assert_equal Category.where(name: 'Documents').count, 0
   end
 
   test 'get edit regular user redirects' do

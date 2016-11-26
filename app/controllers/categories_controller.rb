@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   include CategoriesHelper
   before_action :user_auth
-  before_action :admin_auth, only: [:edit, :destroy] # add new and create?
+  before_action :admin_auth, only: [:new, :create, :edit, :destroy]
   after_action :collect_unsorted_extensions, only: [:create, :destroy, :update]
 
   def index
