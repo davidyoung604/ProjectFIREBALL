@@ -1,0 +1,10 @@
+<div class="row">
+  <%= render 'shared/search' %>
+</div>
+<br />
+<div class="row">
+  <h4>Search results</h4>
+  <% @results.each do |table, matches| %>
+    <%= render 'table_search_results', table: table, matches: matches %>
+  <% end %>
+</div>

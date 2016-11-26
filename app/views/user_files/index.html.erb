@@ -1,0 +1,12 @@
+<%= link_to 'See untagged files', user_file_path('untagged') %>
+<br />
+<br />
+<div id="anchor_links">
+  <%= get_anchor_links_raw(['private', 'my_public', 'public', 'all_remaining'],
+                           :titleize).join(', ').html_safe %>
+</div>
+<br />
+<%= render 'file_list', ownership: 'private', files: @my_files %>
+<%= render 'file_list', ownership: 'my_public', files: @my_public_files %>
+<%= render 'file_list', ownership: 'public', files: @public_files %>
+<%= render 'file_list', ownership: 'all_remaining', files: @remaining_files %>

@@ -4,11 +4,17 @@
   <title>ProjectFIREBALL</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<%= render 'layouts/top_menu' %>
+<%= render 'shared/flash_output' %>
+
+<div id="main_content" class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

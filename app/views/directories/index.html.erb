@@ -1,0 +1,14 @@
+<div id="new_dir_link">
+  <%= link_to "Index a new directory", new_directory_path %>
+</div>
+<br />
+<div id="directory_list">
+  <% if @dirs.any? %>
+    <% @dirs.sort_by(&:name).each do |dir| %>
+      <%= link_to dir.name, dir %> (<%= dir.updated_at %>)
+      <br />
+    <% end %>
+  <% else %>
+    You don't have any indexed directories.
+  <% end %>
+</div>

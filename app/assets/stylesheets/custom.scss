@@ -1,0 +1,28 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#home_link {
+  float: left;
+  font-size: 1.8em;
+  padding-top: 8px;
+  font-weight: bold;
+}
+
+body {
+  padding-top: 80px;
+}
+
+.top-pad-20 {
+  padding-top: 20px;
+}
+
+img.fit-image {
+  max-width: 100%;
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}

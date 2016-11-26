@@ -1,0 +1,9 @@
+<div id="file_list">
+  <%= "#{@n_files} untagged files" %>
+  <%= link_to 'See all files', user_files_path %>
+  <br />
+  <br />
+  <% @files.each do |file| %>
+    <%= link_to file.name, edit_user_file_path(file) %><br />
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<div class="row">
+  <div id="general_info" class="col-sm-5">
+    <h1>System Statistics</h1>
+    <br />
+    <h4><%= number_with_delimiter(@total_files) %> Indexed Files:</h4>
+    <ul>
+      <li>Total Disk Usage: <%= number_to_human_size(@total_data) %></li>
+      <li>Mean File Size: <%= number_to_human_size(@mean_data) %></li>
+      <li>Median File Size: <%= number_to_human_size(@median_data) %></li>
+    </ul>
+  </div>
+  <%= render 'shared/search' %>
+</div>
+<br />
+<%= render 'n_largest_files' %>
+<br />
+<%= render 'size_by_category' %>

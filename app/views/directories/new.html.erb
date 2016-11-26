@@ -1,0 +1,14 @@
+<div id="directory_form" class="col-sm-8">
+  <%= link_to 'Directory Index', directories_path %>
+  <br />
+  <br />
+  <%= form_for(@dir) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <br />
+    <%= f.label :ignore_hidden_files %>
+    <%= f.check_box :ignore_hidden_files %>
+    <br />
+    <%= f.submit "Index", class: "btn btn-primary" %>
+  <% end %>
+</div>

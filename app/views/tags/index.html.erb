@@ -1,0 +1,8 @@
+<div id="tag_list">
+  <% if @tags.empty? %>
+    No tags yet
+  <% end %>
+  <% @tags.sort_by { |t| t.name }.each do |tag| %>
+    <%= link_to tag.name, tag %> (<%= @tag_counts[tag.name] %>)<br />
+  <% end %>
+</div>

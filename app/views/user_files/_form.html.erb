@@ -1,0 +1,6 @@
+<%= form_for(@file) do |f| %>
+  <%= f.label :tags %>
+  <%= f.text_field :csv_tags, class: 'form-control' %>
+  <br />
+  <%= f.submit 'Save', class: 'btn btn-primary' %>
+<% end %>

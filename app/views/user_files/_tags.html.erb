@@ -1,0 +1,10 @@
+<div id="tags">
+  Tags:
+  <% @file.tags.each do |tag| %>
+    <%= link_to tag.name, tag %>
+  <% end %>
+</div>
+
+<div id="edit">
+  <%= link_to "Edit", edit_user_file_path(@file) %>
+</div>

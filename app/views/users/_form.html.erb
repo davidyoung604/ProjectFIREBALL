@@ -1,0 +1,19 @@
+<%= render 'shared/error', obj: @user %>
+
+<div id="user_form" class="col-sm-6">
+  <%= form_for(@user) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <br />
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+    <br />
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <br />
+    <%= f.label :admin %>
+    <%= f.check_box :admin %>
+    &nbsp;
+    <%= f.submit 'Create User', class: 'btn btn-primary' %>
+  <% end %>
+</div>

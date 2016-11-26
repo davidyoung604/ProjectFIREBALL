@@ -1,0 +1,12 @@
+<div id="<%= ownership %>">
+  <a data-toggle="collapse" href="#collapse_<%= ownership %>">
+    <%= "#{ownership.titleize} Files (#{files.count})" %>
+  </a>
+  <br />
+  <div id="collapse_<%= ownership %>" class="collapse">
+    <% files.each do |file| %>
+      <%= link_to file.name, file %><br />
+    <% end %>
+  </div>
+</div>
+<br />

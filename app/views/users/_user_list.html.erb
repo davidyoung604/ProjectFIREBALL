@@ -1,0 +1,11 @@
+<div>
+  <h2><%= type.pluralize.titleize %></h2>
+</div>
+
+<div id="<%= type %>_list">
+  <ul>
+  <% list.each do |user| %>
+    <li><%= link_to user.name, user %></li>
+  <% end %>
+  </ul>
+</div>

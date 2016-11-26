@@ -1,0 +1,27 @@
+<div id="category_info">
+  <h1><%= @cat.name %></h1>
+
+  Extensions:
+  <%= get_anchor_links(:name, @exts).join(', ').html_safe %>
+  |
+  <%= link_to 'Edit', edit_category_path(@cat) %>
+  <% if @current_user.admin %>
+    <%= link_to 'Delete', category_path(@cat), method: :delete %>
+  <% end %>
+  <br />
+  <br />
+  <%= "#{@n_files_in_cat} files in this category" %>
+</div>
+
+<div id="category_files">
+  <% @files_by_ext.each do |ext, file_list| %>
+    <a id="<%= ext %>" data-toggle="collapse" href="#collapse_<%= ext %>">
+      <h5><%= "#{ext} (#{file_list.length})" %></h5>
+    </a>
+    <div id="collapse_<%= ext %>" class="collapse">
+      <% file_list.each do |file| %>
+        <%= link_to file.name, file %><br />
+      <% end %>
+    </div>
+  <% end %>
+</div>

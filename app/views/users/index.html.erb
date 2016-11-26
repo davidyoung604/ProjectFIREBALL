@@ -1,0 +1,6 @@
+<div id="user_management">
+  <%= link_to "Create new user", new_user_path %>
+</div>
+
+<%= render 'user_list', type: 'admin', list: @admins %>
+<%= render 'user_list', type: 'regular_user', list: @regulars %>

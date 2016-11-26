@@ -1,0 +1,45 @@
+<div id="directory_info">
+  <% if @dir.parent %>
+    <%= link_to @dir.parent.name, @dir.parent %>
+    &gt; <%= @dir.name.split(File::SEPARATOR).last %>
+  <% else %>
+    <%= @dir.name %>
+  <% end %>
+</div>
+
+<br />
+
+<% if @dir.children.any? %>
+  <div id="child_directories">
+      <a data-toggle="collapse" href="#collapse_dirs">
+        Sub-Directories (<%= @dir.children.count %>):
+      </a>
+      <div id="collapse_dirs" class="collapse">
+        <ul>
+        <% @dir.children.sort_by {|f| f.name}.each do |d| %>
+          <li><%= link_to get_dir_name(d), d %></li>
+        <% end %>
+        </ul>
+      </div>
+  </div>
+  <br />
+<% end %>
+
+<div id="child_files">
+  <a data-toggle="collapse" href="#collapse_files">Files (<%= @dir_files.count %>):</a>
+  <% if @dir_files.empty? %>
+    No files found
+  <% else %>
+    <div id="collapse_files" class="collapse">
+      <ul>
+      <% @dir_files.sort.each do |file| %>
+        <li>
+          <%= link_to file.name, file %>: <%= number_to_human_size(file.size) %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<br />

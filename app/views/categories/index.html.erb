@@ -1,0 +1,9 @@
+<div id="category_list">
+  <% @cats.each do |cat| %>
+    <%= link_to cat.name, cat %><br />
+  <% end %>
+</div>
+
+<div id="category_management">
+  <%= link_to "Create new category", new_category_path %>
+</div>

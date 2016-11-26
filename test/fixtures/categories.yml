@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+empty:
+  name: Empty
+
+full:
+  name: Full
+
+delete_me:
+  name: Delete Me
+
+change_me:
+  name: Change Me
+
+unsorted:
+  name: Unsorted

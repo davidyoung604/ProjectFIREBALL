@@ -1,0 +1,17 @@
+<div id="size_by_category">
+  <h4>Size by Category</h4>
+  <script type="text/javascript">
+    var svg_size = dimple.newSvg('#size_by_category', 600, 400);
+    d3.json('/stats/size_by_category', function (data) {
+      var chart = new dimple.chart(svg_size, data);
+      chart.setBounds(0, 20, 460, 360);
+
+      // https://github.com/d3/d3-format/blob/master/README.md#locale_format
+      chart.addMeasureAxis('p', 'Size').tickFormat = ',.4s';
+      chart.addSeries('Category', dimple.plot.pie);
+
+      chart.addLegend(500, 20, 90, 300, 'left');
+      chart.draw();
+    });
+  </script>
+</div>

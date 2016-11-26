@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+txt:
+  name: txt
+  category: full
+
+jpg:
+  name: jpg
+  category: full
+
+mp4:
+  name: mp4
+  category: full

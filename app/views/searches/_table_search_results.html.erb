@@ -1,0 +1,12 @@
+<div>
+  <%= table.titleize.pluralize %>
+  <% if matches && matches.any? %>
+    <ul>
+      <% matches.each do |match| %>
+        <li><%= link_to match.name, match %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    No results found.
+  <% end %>
+</div>

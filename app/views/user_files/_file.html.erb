@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-8">
+    <%= render 'file_info' %>
+  </div>
+  <div id="tags_container" class="col-sm-4">
+    <% if tags == :tags %>
+      <%= render 'tags' %>
+    <% elsif tags == :suggested %>
+      Suggested tags: <%= get_suggested_tags_file(@file).join(', ') %>
+    <% end %>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div id="file_content" class="col-sm-8">
+    <% embed_code = get_embed_code(@file) %>
+    <% if embed_code.empty? %>
+      Unable to preview file.
+      Perhaps previews aren't supported for this file type.
+    <% else %>
+      <%= embed_code %>
+    <% end %>
+  </div>
+  <div id="secondary" class="col-sm-4">
+    <% if secondary == :form %>
+      <%= render 'form' %>
+    <% end %>
+  </div>
+</div>
+
+<% if @tp %>
+  <%= render 'photo_metadata' %>
+<% end %>

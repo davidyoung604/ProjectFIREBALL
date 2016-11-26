@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+admin:
+  name: Admin
+  admin: true
+  password_digest: <%= User.digest('admin') %>
+
+reg_user:
+  name: bob
+  admin: false
+  password_digest: <%= User.digest('bob') %>
+
+admin_no_files:
+  name: admin2
+  admin: true
+  password_digest: <%= User.digest('admin2') %>
+
+reg_no_files:
+  name: reg2
+  admin: false
+  password_digest: <%= User.digest('reg2') %>

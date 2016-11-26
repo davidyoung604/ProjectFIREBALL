@@ -1,0 +1,24 @@
+<header class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <%= link_to 'ProjectFIREBALL', root_path, id: 'home_link' %>
+    <ul class="nav navbar-nav navbar-right">
+      <% if logged_in? %>
+        <li><%= link_to 'Directories', directories_path %></li>
+        <li><%= link_to 'Files', user_files_path %></li>
+        <li><%= link_to 'Tags', tags_path %></li>
+        <li class="navbar-text">|</li>
+        <%= render 'layouts/category_dropdown' %>
+        <li class="navbar-text">|</li>
+
+        <% if @current_user.admin %>
+          <%= render 'layouts/settings_dropdown' %>
+          <li class="navbar-text">|</li>
+        <% end %>
+
+        <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</header>

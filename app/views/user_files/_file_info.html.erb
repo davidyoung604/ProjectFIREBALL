@@ -1,0 +1,4 @@
+<div id="file_info">
+  <%= link_to @file.directory.name, @file.directory %><br />
+  <%= @file.name %>: <%= number_to_human_size @file.size %>
+</div>

@@ -1,0 +1,8 @@
+<div id="metadata">
+  <% @tp.interesting_records.each do |type, list| %>
+    <h4><%= type.to_s.titleize %></h4>
+    <% list.each do |rec| %>
+      <%= "#{rec.tag_name}: #{format_metadata(rec.tag_name, rec.data)}" %><br />
+    <% end %>
+  <% end %>
+</div>

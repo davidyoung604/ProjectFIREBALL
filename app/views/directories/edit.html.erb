@@ -1,0 +1,16 @@
+<%= render 'dir_info' %>
+
+<div id="tags" class="col-sm-6">
+  <%= form_for(@dir) do |f| %>
+    <%= f.label :tags %>
+    <%= f.text_field :csv_tags, class: 'form-control' %>
+    <br />
+    <%= f.label :public %>
+    <%= f.check_box :public %>
+    &nbsp;
+    <%= f.label :cascade %>
+    <%= f.check_box :cascade %>
+    &nbsp;
+    <%= f.submit "Save", class: 'btn btn-primary' %>
+  <% end %>
+</div>

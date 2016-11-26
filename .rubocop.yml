@@ -1,0 +1,21 @@
+AllCops:
+  Exclude: # these are auto-generated. don't care about their code quality
+    - bin/*
+    - db/schema.rb
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
+
+Style/Documentation:
+  Exclude:
+    - app/controllers/*
+    - app/helpers/*
+    - app/models/*
+    - config/application.rb
+    - db/migrate/*
+    - test/**/*
+
+Style/RegexpLiteral:
+  Exclude:
+    - app/helpers/application_helper.rb

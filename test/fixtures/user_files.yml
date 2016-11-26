@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+txt_1:
+  name: one.txt
+  size: 1
+  directory: has_files
+  user: admin
+  extension: txt
+
+jpg_200:
+  name: two.jpg
+  size: 200
+  directory: has_files
+  user: admin
+  extension: jpg
+
+change_me:
+  name: changeme.txt
+  size: 42
+  directory: has_files
+  user: admin
+
+embeddable_image:
+  name: embeddable.jpg
+  size: 42
+  directory: has_files
+  user: reg_user
+  extension: jpg
+
+embeddable_video:
+  name: embeddable.mp4
+  size: 42
+  directory: has_files
+  user: reg_user
+  extension: mp4

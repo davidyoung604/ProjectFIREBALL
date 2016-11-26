@@ -1,0 +1,19 @@
+<div id="n_largest_files">
+  <h4>10 Largest Files</h4>
+  <script type="text/javascript">
+    var svg_files = dimple.newSvg('#n_largest_files', 700, 400);
+    d3.json('/stats/10_largest_files', function (data) {
+      var chart = new dimple.chart(svg_files, data);
+      chart.setBounds(80, 20, 600, 375);
+
+      // hide the x-axis labels
+      chart.addCategoryAxis('x', 'Name').hidden = true;
+      // https://github.com/d3/d3-format/blob/master/README.md#locale_format
+      chart.addMeasureAxis('y', 'Size').tickFormat = ',.4s';
+      chart.addSeries('Category', dimple.plot.bar);
+
+      chart.addLegend(500, 30, 90, 300, 'left');
+      chart.draw();
+    });
+  </script>
+</div>
