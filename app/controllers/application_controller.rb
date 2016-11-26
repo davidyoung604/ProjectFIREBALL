@@ -17,4 +17,14 @@ class ApplicationController < ActionController::Base
       f.public || f.user.id == @current_user.id
     end
   end
+
+  def update_and_touch(obj, params)
+    if obj.update_attributes(params)
+      obj.touch # update the updated_at field
+      obj.save
+      redirect_to obj
+    else
+      render 'edit'
+    end
+  end
 end

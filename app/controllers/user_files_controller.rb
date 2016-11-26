@@ -12,9 +12,7 @@ class UserFilesController < ApplicationController
   end
 
   def show
-    @file = UserFile.find(params[:id])
-    full_path = "#{@file.directory.name}/#{@file.name}"
-    @tp = TIFFParser.new(full_path) if run_tiff_parser? @file
+    file_and_metadata
   end
 
   def stream
@@ -25,21 +23,12 @@ class UserFilesController < ApplicationController
   end
 
   def edit
-    # TODO: permissions?
-    @file = UserFile.find(params[:id])
-    full_path = "#{@file.directory.name}/#{@file.name}"
-    @tp = TIFFParser.new(full_path) if run_tiff_parser? @file
+    file_and_metadata
   end
 
   def update
     @file = UserFile.find(params[:id])
-    if @file.update_attributes(user_file_params)
-      @file.touch # update the updated_at field
-      @file.save
-      redirect_to @file
-    else
-      render 'edit'
-    end
+    update_and_touch(@file, user_file_params)
   end
 
   # special case code for listing untagged files
@@ -64,5 +53,11 @@ class UserFilesController < ApplicationController
       public_files: others.where(public: true),
       remaining_files: others.where(public: false)
     }
+  end
+
+  def file_and_metadata
+    @file = UserFile.find(params[:id])
+    full_path = "#{@file.directory.name}/#{@file.name}"
+    @tp = TIFFParser.new(full_path) if run_tiff_parser? @file
   end
 end

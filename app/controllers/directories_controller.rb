@@ -17,20 +17,11 @@ class DirectoriesController < ApplicationController
 
   def update
     @dir = Directory.find(params[:id])
-    if @dir.update_attributes(directory_params)
-      @dir.touch # update the updated_at field
-      @dir.save
-      redirect_to @dir
-    else
-      render 'edit'
-    end
+    update_and_touch(@dir, directory_params)
   end
 
   def new
-    @dir = Directory.new( # TODO: clean up these default params before release
-      name: '/Users/David/Desktop/Photography Inspiration',
-      ignore_hidden_files: true
-    )
+    @dir = Directory.new(ignore_hidden_files: true)
   end
 
   def create
