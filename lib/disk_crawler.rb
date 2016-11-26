@@ -5,6 +5,7 @@ require 'sqlite3'
 class DiskCrawler
   def initialize(args = {})
     base_path = args[:base_path] || '/'
+    raise "Path #{base_path} does not exist" unless File.exist? base_path
     @base_dir = Directory.find_or_create_by!(name: base_path)
     @base_dir.explicitly_indexed = true
     @base_dir.save # force it to show up BEFORE indexing is done
