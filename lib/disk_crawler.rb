@@ -39,7 +39,7 @@ class DiskCrawler
 
   def handle_dir(path, parent_dir)
     if File.symlink? path
-      Rails.logger.warn path, 'Symlink. ' \
+      Rails.logger.warn path + 'is a symlink. ' \
         'Avoiding potential infinite loops by not following.'
     elsif File.readable? path
       new_dir = Directory.find_or_create_by!(name: path)
