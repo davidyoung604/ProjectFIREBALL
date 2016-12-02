@@ -1,4 +1,5 @@
 module SessionsHelper
+  # helper methods via https://www.railstutorial.org/book/basic_login
   def log_in(user)
     session[:user_id] = user.id
   end
